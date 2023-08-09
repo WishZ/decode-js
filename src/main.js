@@ -1,8 +1,10 @@
 ﻿import fs from 'fs'
+import iconv from 'iconv-lite'
 import PluginSojson from './plugin/sojson.js'
 import PluginSojsonV7 from './plugin/sojsonv7.js'
 import PluginObfuscator from './plugin/obfuscator.js'
 import PluginAwsc from './plugin/awsc.js'
+import PluginAwsc226 from './plugin/awsc226.js'
 
 // 读取参数
 let type = 'obfuscator'
@@ -24,7 +26,9 @@ console.log(`输入: ${encodeFile}`)
 console.log(`输出: ${decodeFile}`)
 
 // 读取源代码
-const sourceCode = fs.readFileSync(encodeFile, { encoding: 'utf-8' })
+const content = fs.readFileSync(encodeFile, { encoding: 'binary' })
+var buf = new Buffer.from(content, 'binary');
+var sourceCode = iconv.decode(buf, 'utf-8')
 
 // 净化源代码
 let code
@@ -36,6 +40,8 @@ if (type === 'sojson') {
   code = PluginObfuscator(sourceCode)
 } else if (type === 'awsc') {
   code = PluginAwsc(sourceCode)
+} else if (type === 'awsc226') {
+  code = PluginAwsc226(sourceCode)
 }
 
 // 输出代码
