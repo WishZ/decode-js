@@ -1,5 +1,4 @@
 ﻿import fs from 'fs'
-import iconv from 'iconv-lite'
 import PluginSojson from './plugin/sojson.js'
 import PluginSojsonV7 from './plugin/sojsonv7.js'
 import PluginObfuscator from './plugin/obfuscator.js'
@@ -26,9 +25,7 @@ console.log(`输入: ${encodeFile}`)
 console.log(`输出: ${decodeFile}`)
 
 // 读取源代码
-const content = fs.readFileSync(encodeFile, { encoding: 'binary' })
-var buf = new Buffer.from(content, 'binary');
-var sourceCode = iconv.decode(buf, 'utf-8')
+const sourceCode = fs.readFileSync(encodeFile, { encoding: 'utf-8' })
 
 // 净化源代码
 let code
