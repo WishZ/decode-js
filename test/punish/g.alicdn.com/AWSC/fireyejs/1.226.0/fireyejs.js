@@ -178,12 +178,14 @@
         ni = -1;
         pi = 0;
         try {
+            siArr = [];
             for (var Si = 13058; 0 !== Si;) {
                 var xi,
                     Oi = Si >> 5,
                     wi = 31 & Oi,
                     yi,
                     Ei = 31 & Oi >> 5;
+                siArr.push(31 & Si)
                 switch (31 & Si) {
                     case 0:
                     {
@@ -39122,6 +39124,7 @@
                         break;
                     }
                 }
+                console.info(siArr)
             }
         } catch (e) {
             if (ni >= 0 || ni[0] >= 0) {

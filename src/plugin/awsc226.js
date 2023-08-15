@@ -218,7 +218,6 @@ export default function (code) {
     traverse(ast, {
         IfStatement: { enter: LintIfTest },
     })
-
     traverse(ast, {
         SwitchCase: { enter: LintSwitchCase },
     })
@@ -231,8 +230,6 @@ export default function (code) {
     traverse(ast, {
         BlockStatement: { exit: LintBlock },
     })
-    //@todo 抽取匿名函数的内容
-
     code = generator(ast, {
         comments: false,
         jsescOption: { minimal: true },
